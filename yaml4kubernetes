@@ -1,6 +1,10 @@
-##
-apiVersion: v1 or apps/v1
-kind: Pod/Service/Deployment/Replicaset/DaemonSet
+## This document gives a general overview of understanding yaml for Kubernetes. 
+## To create any container/pod/deployment yaml file plays an important role. There are 4 main object that the yaml files in kubernetes consist off. apiVersion, kind
+metadata and spec
+## apiVersion: specififes the version of kubernetes API, kind: specifies the object of the kubernetes for example it could be a pod, deployment, replicaset or deamonset etc.,
+## metadata: data that identifies the object and spec is the specification on the object
+apiVersion: 
+kind: 
 metadata: 
   name: <name>
   namespace: <name>
@@ -10,7 +14,6 @@ metadata:
     
 spec:
   
-
   initContainers:
 
   container:
@@ -46,8 +49,6 @@ spec:
     storage: 1Gi
   hostPath:
      path: /tmp/data
-
-
 
 # Persistant volume claims (kind: PersistentVolumeClaim)
 
