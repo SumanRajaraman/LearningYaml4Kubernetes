@@ -1,8 +1,9 @@
-## This document gives a general overview of understanding yaml for Kubernetes. 
+## This document gives a general overview of yaml for Kubernetes. The file is not complete content are still been added.
 ## To create any container/pod/deployment yaml file plays an important role. There are 4 main object that the yaml files in kubernetes consist off. apiVersion, kind
 metadata and spec
 ## apiVersion: specififes the version of kubernetes API, kind: specifies the object of the kubernetes for example it could be a pod, deployment, replicaset or deamonset etc.,
 ## metadata: data that identifies the object and spec is the specification on the object
+
 apiVersion: 
 kind: 
 metadata: 
