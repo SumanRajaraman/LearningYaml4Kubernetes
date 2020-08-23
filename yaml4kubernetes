@@ -1,5 +1,187 @@
-apiVersion:
-kind:
-metadata:
-
+##
+apiVersion: v1 or apps/v1
+kind: Pod/Service/Deployment/Replicaset/DaemonSet
+metadata: 
+  name: <name>
+  namespace: <name>
+  labels:
+    name: <name>
+    type: <name>
+    
 spec:
+  
+
+  initContainers:
+
+  container:
+  - name: <ImageName>
+    image: <Image>
+    ports:
+    - containerPort: <Port>
+    commands:
+    volumeMounts:
+    - mountPath: 
+      name: 
+
+# Multi-Pod deployment
+  - name: <Image2Name>
+    image: <Image>
+
+# End Multi-Pod deployment
+
+# Volume and Mounts
+  volumes:
+  - name: data-volume
+    hostpath:
+       path: /path
+       type:
+
+# End Volume and Mounts
+
+# Persistance volumes (kind: PersistentVolume)
+
+  accessModes:
+    - ReadWriteOnce #other possible values ReadOnlyMany or ReadWriteMany
+  capacity:
+    storage: 1Gi
+  hostPath:
+     path: /tmp/data
+
+
+
+# Persistant volume claims (kind: PersistentVolumeClaim)
+
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    request:
+      storage: 500Mi
+     
+# Note: persistentVolumeReclaimPolicy: Retain #Default othervalue is "Recycle"
+
+# End Persistant volume claims
+
+# End Persistant Volume
+
+  resources:
+      request:
+       memory: "512Mi"
+       cpu: 1
+      limits:
+       memory: "1Gi"
+       cpu: 2
+    
+
+    args: ["10"]
+    command: ["sleep"]
+    - sleep
+    - "1000"
+    env:
+    - name: 
+      value:
+
+# configmap injecting as environment variable
+    envFrom:
+    - configMapRef:
+         name: <confirgmap-name>  
+
+# configmap injection as single environment variable
+    env:
+     - name: 
+       valueFrom:
+         configMapKeyRef:
+           name:
+           key: 
+
+# configmap injection as a volume
+    volumes:
+    - name: 
+      configMap:
+       name:
+
+# secrets
+# Injecting secret as environment variable
+    envFrom:
+    - secretRef:
+        name: 
+
+# Injecting secret as single environment variable
+    env:
+     - name: <name>
+       valueFrom: 
+        secretKeyRef:
+          name:
+          key: 
+
+# Injecting secret as volume
+    volumes:
+    - name: <name>
+      secret:
+        secretName:
+
+      ValueFrom:
+        configMapKeyRef:
+        secretKeyRef:
+   
+    
+  
+  schedulerName:
+  
+  # Start Rolling update and Strategy
+  strategy:
+    rollingUpdate:
+      maxSurge:
+      maxUnavailable:
+    type: RollingUpdate
+    type: Recreate #no rollingUpdate: or maxSurge/maxUnavaialble
+  
+  # End Rolling update
+  
+  # Start ReplicaSet
+  replicas: <value>
+  
+  template:
+    metadata:
+    spec:
+  
+  # End Replicaset
+
+  selector:
+    matchLabels:
+      app: 
+  
+  clusterIP:
+  status:
+
+  type: NodePort | LoadBalancer 
+  ports:
+  - name:
+    protocol: 
+    targetPort:
+    port:
+    nodePort:
+
+  nodeName: <name>
+  
+  nodeSelector:
+    size: 
+
+  toleration:
+  - key: " "
+    operator: " "
+    value: " "
+    effect: "NoSchedule | PreferNoSchedule | NoExecute"
+  
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      requiredDuringSchedulingRequiredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key:
+            operator: In | NotIn | Exist (For Exist no values are required)
+            values:
+            - Large
+              Small
+              Medium
